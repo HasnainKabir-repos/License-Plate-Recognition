@@ -2,3 +2,7 @@ Scripts
 models
 __pycache__
 .ipynb_checkpoints
+Lib
+share
+pyvenv.cfg
+models.zip
