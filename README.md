@@ -1,6 +1,6 @@
 ## Introduction
 
-This project aims to create a pipeline that recognizes license plates of vehicles in bangladesh. LPR is a two step process. The first is to detect the region of an image where the license plate is present and then perform ocr to extract the text. This is a simplified overview of the pipeline
+This project is dedicated to developing a robust pipeline for license plate recognition (LPR) in Bangladesh. The LPR process involves two crucial steps: first, detecting the region of an image where the license plate is located, and second, performing Optical Character Recognition (OCR) to extract the text. The pipeline can be summarized as follows:
 
 ```mermaid
 graph LR
@@ -52,7 +52,7 @@ Activate the virtual environment
 Then install the dependencies.
 
 ```sh
-pip install -r extract_license_text.txt
+pip install -r necessary-requirements-to-run.txt
 ```
 
 Download and extract the model files
@@ -110,4 +110,3 @@ The similarity measure is calculated using difflib.SequenceMatcher class which h
 
 This a work in progress. There are some issues with using compatible font for bengali. This output was obtained from running yolo detection in google colab and modifying the annotation portion of the detection code.
 
-![real_time_lpr](https://github.com/renzhamin/bengali-alpr/assets/57265942/d2046282-1654-44c9-9461-ec5cf1ff8f6f)
