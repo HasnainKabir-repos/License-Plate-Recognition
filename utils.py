@@ -115,22 +115,4 @@ def detect_and_extract_lp_text(image_path, show_cropped_image=True):
     print("Image Name:", image_path)
     print("License Plate Text:", lp_text)
 
-    # Save the result to an Excel file
-    result_excel_path = 'E:\\License-Plate-Recognition\\output_results.xlsx'
-
-    # Load existing data or create a new DataFrame if the file is empty
-    try:
-        existing_df = pd.read_excel(result_excel_path)
-    except FileNotFoundError:
-        existing_df = pd.DataFrame()
-
-    # Append new results to the existing DataFrame
-    new_result = {'image_file_name': image_path,
-                  'predicted_characters': lp_text}
-    existing_df = pd.concat(
-        [existing_df, pd.DataFrame([new_result])], ignore_index=True)
-
-    # Save the updated DataFrame to the Excel file
-    existing_df.to_excel(result_excel_path, index=False)
-
     return lp_text
