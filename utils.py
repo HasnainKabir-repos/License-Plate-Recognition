@@ -25,7 +25,6 @@
 #     plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 
 
-
 # from ultralytics.models import YOLO
 # model = YOLO('models/yolo.pt')
 # def detect_license_plate(img):
@@ -34,7 +33,6 @@
 #         print(f"detect_license_plate(): img is null")
 #         return
 #     return detection[0]
-
 
 
 # from extract_license_text import extract_license_text
@@ -127,7 +125,8 @@ def detect_and_extract_lp_text(image_path, show_cropped_image=True):
         existing_df = pd.DataFrame()
 
     # Append new results to the existing DataFrame
-    new_result = {'Image Name': image_path, 'License Plate Text': lp_text}
+    new_result = {'image_file_name': image_path,
+                  'predicted_characters': lp_text}
     existing_df = pd.concat(
         [existing_df, pd.DataFrame([new_result])], ignore_index=True)
 
