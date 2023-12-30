@@ -82,6 +82,30 @@ utils.detect_and_extract_lp_text('images/test_image.jpg')
 
 The code was tested with Python 3.11.5.
 
+## Training The Recognition Model
+
+You can train the recognition model either from scratch or fine tune it. The code for training is in this [repository](https://github.com/clovaai/deep-text-recognition-benchmark). You can follow this [discussion](https://github.com/clovaai/deep-text-recognition-benchmark/issues/85) and configure the parameters accordingly.
+
+After creating your dataset, you can start fine tuning with by calling the `train.py` script.
+
+```sh
+python train.py --batch_size 16 --num_iter 1500 --valInterval 50 --FT --saved_model='bengali.pth' --workers 2 --Transformation 'TPS' --FeatureExtraction 'ResNet'
+```
+
+The saved_model argument specifies the model that you want to fine tune. In this case it's this [bengali model](https://github.com/JaidedAI/EasyOCR/releases/download/v1.1.8/bengali.zip). The model in `models/EasyOCR/models/bn_license_tps.pth` is the result of fine tuning that pretrained model on this [dataset](https://drive.google.com/file/d/1JkqEEATN3uiaARQKrGEFFNidjBQpbCV5). Here are the results of experimenting with different hyper parameters.
+
+| Transformation | Batch size | Similarity Measure (%) |
+| -------------- | ---------- | ---------------------- |
+| TPS            | 16         | 94.91                  |
+| TPS            | 32         | 91.64                  |
+| TPS            | 64         | 91.37                  |
+| None           | 10         | 91.86                  |
+| None           | 64         | 90.78                  |
+| None           | 192        | 90.08                  |
+
+The similarity measure is calculated using difflib.SequenceMatcher class which has a ratio method. This method returns a floating point number in the range [0, 1] indicating how similar two strings are. It produces almost the same result when compared to levenshtein distance also known as edit distance. These experiments were done using google colab.
+
+
 ## Real Time License Plate Recognition
 
 This a work in progress. There are some issues with using compatible font for bengali. This output was obtained from running yolo detection in google colab and modifying the annotation portion of the detection code.
